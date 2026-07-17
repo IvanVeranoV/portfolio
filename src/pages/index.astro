@@ -1,0 +1,87 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import { PROJECTS, SKILLS, SOCIAL_LINKS } from '../config/constants';
+---
+
+<Layout title="Mi Portfolio Profesional">
+  <main class="max-w-5xl mx-auto px-6 py-12 space-y-24">
+    
+    <!-- HERO SECTION (Apartado Personal & Redes) -->
+    <section class="text-center md:text-left space-y-6 pt-12">
+      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight">
+        Hola, soy <span class="bg-linear-to-r from-brand-gradientStart to-brand-gradientEnd bg-clip-text text-transparent">Tu Nombre</span>
+      </h1>
+      <p class="text-xl text-slate-400 max-w-2xl">
+        Desarrollador Web enfocado en crear experiencias digitales de alto rendimiento, visualmente impactantes y optimizadas.
+      </p>
+      
+      <!-- Redes Sociales -->
+      <div class="flex justify-center md:justify-start gap-4 pt-4">
+        {SOCIAL_LINKS.map((link) => (
+          <a href={link.url} target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full border border-slate-700 hover:border-brand-accent hover:text-brand-accent transition-colors">
+            {link.platform}
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="space-y-8">
+      <h2 class="text-3xl font-bold border-b border-slate-800 pb-2">Proyectos Destacados</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {PROJECTS.map((project) => (
+          <div class="p-6 bg-slate-900/50 rounded-2xl border border-slate-800 hover:border-brand-accent/50 transition-all hover:-translate-y-1">
+            <h3 class="text-xl font-bold text-white mb-2">{project.title}</h3>
+            <p class="text-slate-400 mb-4 text-sm">{project.description}</p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              {project.tags.map(tag => <span class="text-xs px-2.5 py-1 rounded-md bg-brand-accent/10 text-brand-accent font-medium">{tag}</span>)}
+            </div>
+            <div class="flex gap-4 text-sm font-semibold">
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center gap-1">GitHub →</a>
+              {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="text-brand-neon hover:underline flex items-center gap-1">Live Demo 🚀</a>}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section class="space-y-6">
+      <h2 class="text-3xl font-bold border-b border-slate-800 pb-2">Habilidades</h2>
+      <div class="flex flex-wrap gap-3">
+        {SKILLS.map(skill => (
+          <span class="px-4 py-2 bg-linear-to-br from-slate-900 to-slate-800 rounded-xl border border-slate-800 text-slate-300 shadow-sm font-medium">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </section>
+
+    <!-- EXPERIENCE & EDUCATION -->
+    <div class="grid md:grid-cols-2 gap-12">
+      <section class="space-y-6">
+        <h2 class="text-3xl font-bold border-b border-slate-800 pb-2">Experiencia</h2>
+        <div class="border-l-2 border-brand-accent pl-4 space-y-6">
+          <div>
+            <span class="text-xs text-brand-accent font-bold tracking-wider uppercase">2024 - Presente</span>
+            <h4 class="text-lg font-bold">Frontend Developer</h4>
+            <p class="text-sm text-slate-400">Tech Company</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-6">
+        <h2 class="text-3xl font-bold border-b border-slate-800 pb-2">Estudios</h2>
+        <div class="border-l-2 border-brand-neon pl-4 space-y-6">
+          <div>
+            <span class="text-xs text-brand-neon font-bold tracking-wider uppercase">2021 - 2024</span>
+            <h4 class="text-lg font-bold">Grado en Ingeniería Informática</h4>
+            <p class="text-sm text-slate-400">Universidad XYZ</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+</Layout>

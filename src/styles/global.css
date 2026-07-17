@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  /* Definición de la paleta de colores vibrantes utilizando la sintaxis de v4 */
+  --color-brand-dark: #0B0F19;
+  --color-brand-light: #F8FAFC;
+  --color-brand-accent: #8B5CF6;       /* Violeta vibrante */
+  --color-brand-neon: #10B981;         /* Esmeralda brillante */
+  --color-brand-gradient-start: #EC4899; /* Rosa */
+  --color-brand-gradient-end: #8B5CF6;   /* Violeta */
+}
