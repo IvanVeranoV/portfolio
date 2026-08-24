@@ -1,0 +1,32 @@
+---
+import { PROFILE } from "../config/constants";
+
+const navigationItems = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Proyectos", href: "#proyectos" },
+  { label: "Habilidades", href: "#habilidades" },
+  { label: "Experiencia y estudios", href: "#trayectoria" },
+];
+---
+
+<nav class="site-navbar" aria-label="Navegación principal">
+  <div class="site-navbar__panel">
+    <div class="site-navbar__header">
+      <a class="site-navbar__brand" href="#inicio">
+        <span class="site-navbar__mark">IV</span>
+        <span class="site-navbar__name">{PROFILE.name}</span>
+      </a>
+    </div>
+
+    <div class="site-navbar__links" id="portfolio-navigation">
+      {
+        navigationItems.map((item) => (
+          <a class="site-navbar__link" href={item.href}>
+            <span class="site-navbar__indicator" aria-hidden="true" />
+            <span>{item.label}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</nav>

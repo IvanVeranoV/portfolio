@@ -1,87 +1,91 @@
-# 🚀 Ultra-Fast Personal Portfolio
+# Iván Verano Peña | Portfolio
 
-A modern, high-impact personal portfolio website built with Astro island architecture, a vibrant visual design system, and the latest Tailwind CSS v4 engine. This project is designed to deliver outstanding performance, modular structure, and a polished developer experience.
+Personal portfolio for Iván Verano Peña, Java developer focused on software development with AI and DevSecOps. It is a static Astro site with a responsive, vibrant interface and centralized portfolio data.
 
-## ✨ Why this project stands out
+## Features
 
-- Built with Astro for fast rendering and minimal JavaScript overhead
-- Uses Tailwind CSS v4 with Vite integration for a modern styling workflow
-- Structured around reusable components and clear separation of concerns
-- Designed with strict TypeScript and maintainable code conventions in mind
+- Fixed navigation bar with links to every portfolio section.
+- Hero section with contact, LinkedIn and GitHub links.
+- Featured project section with repository and live demo links.
+- Skill categories with client-side filtering.
+- Fixed-height, independently scrollable experience and education timelines.
+- Responsive layout and reduced-motion support.
+- Theme and component styles centralized in `src/styles/global.css`.
 
-## 🛠 Tech Stack
+## Featured Project
 
-| Layer | Technology | Purpose |
-| :--- | :--- | :--- |
-| Framework | Astro | Island-based architecture for fast, content-driven pages |
-| Styling | Tailwind CSS v4 | Utility-first design system with the latest engine |
-| Build Tooling | Vite | Fast local development and production builds |
-| Language | TypeScript | Strict type safety and better maintainability |
-| Formatting | Prettier + Astro/Tailwind plugins | Consistent code style and formatting |
+**Event Horizon** is a local event countdown application with import and export support.
 
-## 🧱 Project Architecture
+- Live demo: <https://cuenta-atras-eventos.vercel.app>
+- Repository: <https://github.com/IvanVeranoV/CuentaAtrasEventos>
+
+## Tech Stack
+
+| Layer | Technology |
+| :--- | :--- |
+| Framework | Astro |
+| Styling | Tailwind CSS v4 and centralized CSS components |
+| Build tool | Vite |
+| Language | TypeScript and Astro templates |
+| Formatting | Prettier with Astro and Tailwind plugins |
+
+## Project Structure
 
 ```text
 .
-├── public/                 # Static assets served directly
+├── public/                 # Public assets and favicon files
 ├── src/
-│   ├── assets/             # Images and local media resources
-│   ├── components/         # Reusable UI components
-│   ├── config/             # Centralized portfolio data and constants
-│   ├── layouts/            # Shared page layout wrappers
-│   └── pages/              # Route-based entry points
-├── astro.config.mjs        # Astro configuration with Tailwind + Vite
-├── package.json            # Scripts, dependencies, and engine requirements
-└── tsconfig.json           # Strict TypeScript configuration
+│   ├── components/
+│   │   └── Navbar.astro    # Fixed portfolio navigation
+│   ├── config/
+│   │   └── constants.ts    # Profile, project, skill, work and education data
+│   ├── layouts/
+│   │   └── Layout.astro    # Shared HTML shell and global styles
+│   ├── pages/
+│   │   └── index.astro     # Portfolio page and skill filter behavior
+│   └── styles/
+│       └── global.css      # Theme, component styles and responsive rules
+├── astro.config.mjs
+├── package.json
+└── tsconfig.json
 ```
 
-## ▶️ Getting Started
+## Getting Started
 
-1. Clone the repository:
+Requirements: Node.js `>=22.12.0` and npm.
 
-   ```bash
-   git clone <your-repo-url>
-   cd portfolio
-   ```
+Install dependencies:
 
-2. Install dependencies:
+```bash
+npm install
+```
 
-   ```bash
-   npm install
-   ```
+Start the development server:
 
-   If your environment prompts you to approve the esbuild install script, accept it so the native binary can be installed correctly.
+```bash
+npm run dev
+```
 
-3. Start the development server:
+Open <http://localhost:4321> in a browser.
 
-   ```bash
-   npm run dev
-   ```
+Build for production:
 
-   Open your browser at <http://localhost:4321>.
+```bash
+npm run build
+```
 
-4. Build the project for production:
+Preview the production build locally:
 
-   ```bash
-   npm run build
-   ```
+```bash
+npm run preview
+```
 
-5. Preview the production build locally:
+Format source files:
 
-   ```bash
-   npm run preview
-   ```
+```bash
+npx prettier --plugin=prettier-plugin-astro --write src
+```
 
-## 📐 Core Guidelines
+## Content Management
 
-This project follows a strong set of engineering principles:
-
-- Clean, readable, and maintainable code
-- Modular components with clear responsibilities
-- No magic values; content and configuration are kept intentional and centralized
-- Strict TypeScript usage throughout the codebase
-- Consistent formatting and developer-friendly structure
-
-## 📄 License
-
-This project is licensed under the MIT License.
+Profile content is kept in `src/config/constants.ts`. Update the exported profile, social links, projects, skills, experience and education collections there. Visual theme values and reusable component styles belong in `src/styles/global.css`; page templates should primarily define structure and content flow.

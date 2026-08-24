@@ -1,87 +1,221 @@
 ---
 // src/pages/index.astro
-import Layout from '../layouts/Layout.astro';
-import { PROJECTS, SKILLS, SOCIAL_LINKS } from '../config/constants';
+import Layout from "../layouts/Layout.astro";
+import {
+  EDUCATION,
+  EXPERIENCE,
+  PROFILE,
+  PROJECTS,
+  SKILL_CATEGORIES,
+  SOCIAL_LINKS,
+} from "../config/constants";
 ---
 
-<Layout title="Mi Portfolio Profesional">
-  <main class="max-w-5xl mx-auto px-6 py-12 space-y-24">
-    
-    <!-- HERO SECTION (Apartado Personal & Redes) -->
-    <section class="text-center md:text-left space-y-6 pt-12">
-      <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight">
-        Hola, soy <span class="bg-linear-to-r from-brand-gradientStart to-brand-gradientEnd bg-clip-text text-transparent">Tu Nombre</span>
+<Layout title={`${PROFILE.name} | Portfolio`}>
+  <main
+    class="portfolio-shell mx-auto max-w-5xl space-y-24 px-6 py-12"
+    id="inicio"
+  >
+    <section class="reveal relative space-y-6 pt-12 text-center md:text-left">
+      <div class="hero-status">
+        <span class="relative flex h-2 w-2">
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-neon opacity-75"
+          ></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-brand-neon"
+          ></span>
+        </span>
+        Disponible para nuevos proyectos
+      </div>
+
+      <h1 class="hero-title">
+        Hola, soy <span class="hero-name">{PROFILE.name}</span>
       </h1>
-      <p class="text-xl text-slate-400 max-w-2xl">
-        Desarrollador Web enfocado en crear experiencias digitales de alto rendimiento, visualmente impactantes y optimizadas.
+
+      <p class="hero-subtitle">
+        {PROFILE.headline}
+        <span class="text-slate-500">·</span>
+        {PROFILE.location}
       </p>
-      
-      <!-- Redes Sociales -->
-      <div class="flex justify-center md:justify-start gap-4 pt-4">
-        {SOCIAL_LINKS.map((link) => (
-          <a href={link.url} target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full border border-slate-700 hover:border-brand-accent hover:text-brand-accent transition-colors">
-            {link.platform}
-          </a>
-        ))}
+
+      <p class="hero-summary">{PROFILE.summary}</p>
+
+      <div
+        class="flex flex-wrap items-center justify-center gap-4 pt-2 md:justify-start"
+      >
+        <a href={`mailto:${PROFILE.email}`} class="contact-button">
+          Contactar ahora
+        </a>
+
+        <div class="flex gap-2">
+          {
+            SOCIAL_LINKS.map((link) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={link.platform}
+                class="social-link"
+              >
+                <span class="text-sm font-medium">{link.platform}</span>
+              </a>
+            ))
+          }
+        </div>
       </div>
     </section>
 
-    <!-- PROJECTS SECTION -->
-    <section class="space-y-8">
-      <h2 class="text-3xl font-bold border-b border-slate-800 pb-2">Proyectos Destacados</h2>
+    <section class="reveal reveal-delay-1 space-y-8" id="proyectos">
+      <h2 class="section-title">Proyectos</h2>
       <div class="grid md:grid-cols-2 gap-6">
-        {PROJECTS.map((project) => (
-          <div class="p-6 bg-slate-900/50 rounded-2xl border border-slate-800 hover:border-brand-accent/50 transition-all hover:-translate-y-1">
-            <h3 class="text-xl font-bold text-white mb-2">{project.title}</h3>
-            <p class="text-slate-400 mb-4 text-sm">{project.description}</p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              {project.tags.map(tag => <span class="text-xs px-2.5 py-1 rounded-md bg-brand-accent/10 text-brand-accent font-medium">{tag}</span>)}
-            </div>
-            <div class="flex gap-4 text-sm font-semibold">
-              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center gap-1">GitHub →</a>
-              {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="text-brand-neon hover:underline flex items-center gap-1">Live Demo 🚀</a>}
-            </div>
-          </div>
-        ))}
+        {
+          PROJECTS.map((project) => (
+            <article class="project-card">
+              <div class="project-glow" />
+
+              <div>
+                <div class="project-header">
+                  <h3 class="project-title">{project.title}</h3>
+                  <span class="project-kind">Proyecto</span>
+                </div>
+
+                <p class="project-description">{project.description}</p>
+              </div>
+
+              <div>
+                <div class="project-tags">
+                  {project.tags.map((tag) => (
+                    <span class="project-tag">#{tag}</span>
+                  ))}
+                </div>
+
+                <div class="project-actions">
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                  >
+                    GitHub ↗
+                  </a>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="project-link project-link--demo"
+                    >
+                      Live Demo 🚀
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </section>
 
-    <!-- SKILLS SECTION -->
-    <section class="space-y-6">
-      <h2 class="text-3xl font-bold border-b border-slate-800 pb-2">Habilidades</h2>
-      <div class="flex flex-wrap gap-3">
-        {SKILLS.map(skill => (
-          <span class="px-4 py-2 bg-linear-to-br from-slate-900 to-slate-800 rounded-xl border border-slate-800 text-slate-300 shadow-sm font-medium">
-            {skill}
-          </span>
-        ))}
+    <section class="reveal reveal-delay-2 space-y-6" id="habilidades">
+      <h2 class="section-title">Habilidades</h2>
+      <div class="flex flex-wrap gap-2" aria-label="Filtrar habilidades">
+        <button
+          class="skill-filter"
+          type="button"
+          data-filter="all"
+          aria-pressed="true">Todas</button
+        >
+        {
+          SKILL_CATEGORIES.map((category) => (
+            <button
+              class="skill-filter"
+              type="button"
+              data-filter={category.name}
+              aria-pressed="false"
+            >
+              {category.name}
+            </button>
+          ))
+        }
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          SKILL_CATEGORIES.map((category) => (
+            <div class="skill-category" data-category={category.name}>
+              <h3 class="skill-category-title">{category.name}</h3>
+              <div class="skill-list">
+                {category.skills.map((skill) => (
+                  <span class="skill-tag">{skill}</span>
+                ))}
+              </div>
+            </div>
+          ))
+        }
       </div>
     </section>
 
-    <!-- EXPERIENCE & EDUCATION -->
-    <div class="grid md:grid-cols-2 gap-12">
-      <section class="space-y-6">
-        <h2 class="text-3xl font-bold border-b border-slate-800 pb-2">Experiencia</h2>
-        <div class="border-l-2 border-brand-accent pl-4 space-y-6">
-          <div>
-            <span class="text-xs text-brand-accent font-bold tracking-wider uppercase">2024 - Presente</span>
-            <h4 class="text-lg font-bold">Frontend Developer</h4>
-            <p class="text-sm text-slate-400">Tech Company</p>
+    <section class="reveal reveal-delay-3 space-y-8" id="trayectoria">
+      <h2 class="section-title">Experiencia y estudios</h2>
+      <div class="grid gap-12 md:grid-cols-2">
+        <div class="timeline-panel flex flex-col space-y-6" id="experiencia">
+          <h3 class="section-title">Experiencia</h3>
+          <div class="timeline-scroll">
+            {
+              EXPERIENCE.map((experience) => (
+                <div>
+                  <span class="timeline-item-period">{experience.period}</span>
+                  <p class="timeline-item-company">{experience.company}</p>
+                  <h4 class="timeline-item-role">{experience.role}</h4>
+                  <p class="timeline-item-location">{experience.location}</p>
+                  <ul class="timeline-item-list">
+                    {experience.responsibilities.map((responsibility) => (
+                      <li>{responsibility}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
           </div>
         </div>
-      </section>
 
-      <section class="space-y-6">
-        <h2 class="text-3xl font-bold border-b border-slate-800 pb-2">Estudios</h2>
-        <div class="border-l-2 border-brand-neon pl-4 space-y-6">
-          <div>
-            <span class="text-xs text-brand-neon font-bold tracking-wider uppercase">2021 - 2024</span>
-            <h4 class="text-lg font-bold">Grado en Ingeniería Informática</h4>
-            <p class="text-sm text-slate-400">Universidad XYZ</p>
+        <div class="timeline-panel flex flex-col space-y-6" id="estudios">
+          <h3 class="section-title">Estudios</h3>
+          <div class="timeline-scroll timeline-scroll--education">
+            {
+              EDUCATION.map((education) => (
+                <div>
+                  <span class="timeline-item-period timeline-item-period--education">
+                    {education.period}
+                  </span>
+                  <h4 class="timeline-item-role">{education.degree}</h4>
+                  <p class="timeline-item-company">{education.institution}</p>
+                </div>
+              ))
+            }
           </div>
         </div>
-      </section>
-    </div>
-
+      </div>
+    </section>
   </main>
 </Layout>
+
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>(".skill-filter");
+  const categories = document.querySelectorAll<HTMLElement>(".skill-category");
+
+  filters.forEach((filter) => {
+    filter.addEventListener("click", () => {
+      const selectedCategory = filter.dataset.filter;
+
+      filters.forEach((button) =>
+        button.setAttribute("aria-pressed", String(button === filter)),
+      );
+      categories.forEach((category) => {
+        const shouldShow =
+          selectedCategory === "all" ||
+          category.dataset.category === selectedCategory;
+        category.classList.toggle("is-hidden", !shouldShow);
+      });
+    });
+  });
+</script>
