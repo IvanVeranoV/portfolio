@@ -26,6 +26,13 @@ body {
   background-size: 42px 42px;
   color: var(--ink);
   font-family: "DM Sans", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+p,
+li {
+  text-align: justify;
 }
 
 .site-navbar {
@@ -33,7 +40,8 @@ body {
   z-index: 20;
   top: 1rem;
   left: 1rem;
-  width: 15rem;
+  width: 20%;
+  max-width: 18em;
 }
 
 .site-navbar__panel {
@@ -93,7 +101,7 @@ body {
   gap: 0.75rem;
   border-radius: 0.625rem;
   color: rgb(148 163 184);
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
   white-space: nowrap;
   transition:
@@ -101,11 +109,20 @@ body {
     color 150ms;
 }
 
-.site-navbar__link:hover,
+.site-navbar__link:hover {
+  background: rgba(216, 240, 78, 0.1);
+  color: var(--color-brand-neon);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 0.2rem solid var(--color-brand-neon);
+  outline-offset: 0.2rem;
+}
+
 .site-navbar__link:focus-visible {
   background: rgba(216, 240, 78, 0.1);
   color: var(--color-brand-neon);
-  outline: none;
 }
 
 .site-navbar__indicator {
@@ -174,7 +191,7 @@ h4 {
 .hero-summary {
   max-width: 42rem;
   color: rgb(148 163 184);
-  font-size: 1rem;
+  font-size: 1.0625rem;
   line-height: 1.75;
 }
 
@@ -312,7 +329,7 @@ h4 {
 .project-description {
   margin-bottom: 1.5rem;
   color: rgb(148 163 184);
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.625;
 }
 
@@ -339,7 +356,7 @@ h4 {
   gap: 1rem;
   border-top: 1px solid rgba(30, 41, 59, 0.6);
   padding-top: 1rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -476,7 +493,7 @@ h4 {
   border-radius: 9999px;
   padding: 0.5rem 1rem;
   color: rgb(203 213 225);
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 
@@ -500,7 +517,7 @@ h4 {
 .timeline-item-company,
 .timeline-item-location {
   color: rgb(148 163 184);
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .timeline-item-location {
@@ -518,26 +535,51 @@ h4 {
   margin-top: 0.75rem;
   padding-left: 1.25rem;
   color: rgb(148 163 184);
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 
 .timeline-item-list > li + li {
   margin-top: 0.25rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
   .hero-title {
     font-size: 4.5rem;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 64em) {
+  .site-navbar {
+    width: 96%;
+    max-width: none;
+  }
+
+  .site-navbar__links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-shell {
+    padding-top: 12em;
+  }
+}
+
+@media (min-width: 64.01em) {
+  .portfolio-shell {
+    width: 73%;
+    max-width: none;
+    margin-left: 23%;
+    margin-right: 4%;
+  }
+}
+
+@media (max-width: 48em) {
+  .hero-title {
+    font-size: 1.7rem;
+  }
+
   .site-navbar {
     top: 0.75rem;
     left: 0.75rem;
   }
 
-  .portfolio-shell {
-    padding-top: 6rem;
-  }
 }
