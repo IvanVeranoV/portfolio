@@ -1,6 +1,8 @@
 ---
 // src/pages/index.astro
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import profileImage from "../assets/foto_perfil.jpg";
 import {
   EDUCATION,
   EXPERIENCE,
@@ -11,12 +13,16 @@ import {
 } from "../config/constants";
 ---
 
-<Layout title={`${PROFILE.name} | Portfolio`}>
+<Layout title={`${PROFILE.name} | Portfolio`} description={PROFILE.summary}>
   <main
     class="portfolio-shell mx-auto max-w-5xl space-y-24 px-6 py-12"
     id="inicio"
+    tabindex="-1"
   >
-    <section class="reveal relative space-y-6 pt-12 text-center md:text-left">
+    <section
+      class="hero-section reveal relative space-y-6 pt-12 text-center md:text-left"
+    >
+      <div class="hero-content">
       <div class="hero-status">
         <span class="relative flex h-2 w-2" aria-hidden="true">
           <span
@@ -39,81 +45,17 @@ import {
       </p>
 
       <p class="hero-summary">{PROFILE.summary}</p>
-
-      <div
-        class="flex flex-wrap items-center justify-center gap-4 pt-2 md:justify-start"
-      >
-        <a href={`mailto:${PROFILE.email}`} class="contact-button">
-          Contactar ahora
-        </a>
-
-        <div class="flex gap-2">
-          {
-            SOCIAL_LINKS.map((link) => (
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.platform}
-                class="social-link"
-              >
-                <span class="text-sm font-medium">{link.platform}</span>
-              </a>
-            ))
-          }
-        </div>
       </div>
-    </section>
 
-    <section class="reveal reveal-delay-1 space-y-8" id="proyectos">
-      <h2 class="section-title">Proyectos</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        {
-          PROJECTS.map((project) => (
-            <article class="project-card">
-              <div class="project-glow" aria-hidden="true" />
-
-              <div>
-                <div class="project-header">
-                  <h3 class="project-title">{project.title}</h3>
-                  <span class="project-kind">Proyecto</span>
-                </div>
-
-                <p class="project-description">{project.description}</p>
-              </div>
-
-              <div>
-                <div class="project-tags">
-                  {project.tags.map((tag) => (
-                    <span class="project-tag">#{tag}</span>
-                  ))}
-                </div>
-
-                <div class="project-actions">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="project-link"
-                  >
-                    GitHub ↗
-                  </a>
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="project-link project-link--demo"
-                    >
-                      Live Demo 🚀
-                    </a>
-                  )}
-                </div>
-              </div>
-            </article>
-          ))
-        }
-      </div>
+      <Image
+        src={profileImage}
+        alt="Iván Verano Peña"
+        width={320}
+        height={320}
+        format="webp"
+        loading="eager"
+        class="profile-image"
+      />
     </section>
 
     <section class="reveal reveal-delay-2 space-y-6" id="habilidades">
@@ -198,6 +140,86 @@ import {
             }
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="reveal reveal-delay-1 space-y-8" id="proyectos">
+      <h2 class="section-title">Proyectos</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {
+          PROJECTS.map((project) => (
+            <article class="project-card">
+              <div class="project-glow" aria-hidden="true" />
+
+              <div>
+                <div class="project-header">
+                  <h3 class="project-title">{project.title}</h3>
+                  <span class="project-kind">Proyecto</span>
+                </div>
+
+                <p class="project-description">{project.description}</p>
+                <ul class="project-features">
+                  {project.features.map((feature) => <li>{feature}</li>)}
+                </ul>
+              </div>
+
+              <div>
+                <div class="project-tags">
+                  {project.tags.map((tag) => (
+                    <span class="project-tag">#{tag}</span>
+                  ))}
+                </div>
+
+                <div class="project-actions">
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="project-link"
+                  >
+                    GitHub ↗
+                  </a>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="project-link project-link--demo"
+                    >
+                      Live Demo 🚀
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="contact-section reveal space-y-6" id="contacto">
+      <h2 class="section-title">Contacto</h2>
+      <p>
+        ¿Tienes una propuesta, una oportunidad o quieres hablar sobre desarrollo
+        de software, IA y DevSecOps? Puedes escribirme directamente o encontrarme
+        en mis perfiles profesionales.
+      </p>
+      <div class="contact-links">
+        <a href={`mailto:${PROFILE.email}`} class="contact-button">
+          Escribirme por email
+        </a>
+        {
+          SOCIAL_LINKS.map((link) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+            >
+              {link.platform}
+            </a>
+          ))
+        }
       </div>
     </section>
   </main>

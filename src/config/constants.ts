@@ -3,6 +3,7 @@
 export interface Project {
   title: string;
   description: string;
+  features: string[];
   tags: string[];
   githubUrl: string;
   liveUrl?: string;
@@ -50,8 +51,13 @@ export const PROJECTS: Project[] = [
   {
     title: "Event Horizon · Cuenta atrás de eventos",
     description:
-      "Aplicación web para gestionar cuentas atrás de eventos en tiempo real de forma local, con opciones para exportar e importar los eventos entre dispositivos.",
-    tags: ["JavaScript", "Vercel", "Almacenamiento local"],
+      "Aplicación web para crear y seguir eventos importantes con cuentas atrás en tiempo real. Permite personalizar eventos con imágenes, guardarlos localmente y transferirlos entre dispositivos mediante importación y exportación JSON.",
+    features: [
+      "Crear eventos con título, fecha e imagen.",
+      "Consultar cuentas atrás en tiempo real.",
+      "Importar y exportar eventos en formato JSON.",
+    ],
+    tags: ["React", "Vite", "LocalStorage"],
     githubUrl: "https://github.com/IvanVeranoV/CuentaAtrasEventos",
     liveUrl: "https://cuenta-atras-eventos.vercel.app",
   },
