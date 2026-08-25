@@ -199,23 +199,4 @@ import {
   </main>
 </Layout>
 
-<script>
-  const filters = document.querySelectorAll<HTMLButtonElement>(".skill-filter");
-  const categories = document.querySelectorAll<HTMLElement>(".skill-category");
-
-  filters.forEach((filter) => {
-    filter.addEventListener("click", () => {
-      const selectedCategory = filter.dataset.filter;
-
-      filters.forEach((button) =>
-        button.setAttribute("aria-pressed", String(button === filter)),
-      );
-      categories.forEach((category) => {
-        const shouldShow =
-          selectedCategory === "all" ||
-          category.dataset.category === selectedCategory;
-        category.classList.toggle("is-hidden", !shouldShow);
-      });
-    });
-  });
-</script>
+<script src="/scripts/skill-filter.js" is:inline></script>
