@@ -20,12 +20,18 @@ import {
     id="inicio"
     tabindex="-1"
   >
-    <section class="hero-section reveal relative space-y-6 pt-12 text-center md:text-left">
+    <section
+      class="hero-section reveal relative space-y-6 pt-12 text-center md:text-left"
+    >
       <div class="hero-content">
         <div class="hero-status">
           <span class="relative flex h-2 w-2" aria-hidden="true">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-neon opacity-75"></span>
-            <span class="relative inline-flex h-2 w-2 rounded-full bg-brand-neon"></span>
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-neon opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex h-2 w-2 rounded-full bg-brand-neon"
+            ></span>
           </span>
           Desarrollo de software · Backend · Integración de sistemas
         </div>
@@ -68,18 +74,26 @@ import {
             </div>
             <p class="text-slate-300">{experience.summary}</p>
             <ul class="timeline-item-list">
-              {experience.responsibilities.map((item) => <li>{item}</li>)}
+              {experience.responsibilities.map((item) => (
+                <li>{item}</li>
+              ))}
             </ul>
 
             {experience.projects.length > 0 && (
               <div class="space-y-5 pt-2">
-                <h4 class="text-lg font-semibold text-white">Proyectos y contribuciones</h4>
+                <h4 class="text-lg font-semibold text-white">
+                  Proyectos y contribuciones
+                </h4>
                 {experience.projects.map((project) => (
                   <section class="rounded-xl border border-slate-700/70 bg-slate-900/50 p-5 space-y-3">
-                    <h5 class="font-semibold text-brand-neon">{project.name}</h5>
+                    <h5 class="font-semibold text-brand-neon">
+                      {project.name}
+                    </h5>
                     <p class="text-slate-300">{project.description}</p>
                     <ul class="timeline-item-list">
-                      {project.contributions.map((contribution) => <li>{contribution}</li>)}
+                      {project.contributions.map((contribution) => (
+                        <li>{contribution}</li>
+                      ))}
                     </ul>
                     {project.technologies.length > 0 && (
                       <div class="project-tags">
@@ -110,9 +124,13 @@ import {
                   <span class="project-kind">{project.status}</span>
                 </div>
                 <p class="project-description">{project.description}</p>
-                {project.context && <p class="text-sm text-slate-400">{project.context}</p>}
+                {project.context && (
+                  <p class="text-sm text-slate-400">{project.context}</p>
+                )}
                 <ul class="project-features">
-                  {project.features.map((feature) => <li>{feature}</li>)}
+                  {project.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))}
                 </ul>
               </div>
               <div class="relative">
@@ -124,12 +142,22 @@ import {
                 {(project.githubUrl || project.liveUrl) && (
                   <div class="project-actions">
                     {project.githubUrl && (
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="project-link">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-link"
+                      >
                         GitHub ↗
                       </a>
                     )}
                     {project.liveUrl && (
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="project-link project-link--demo">
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-link project-link--demo"
+                      >
                         Ver proyecto ↗
                       </a>
                     )}
@@ -148,7 +176,9 @@ import {
         EDUCATION.map((education) => (
           <article class="space-y-4 border-l-2 border-brand-neon pl-5">
             <div>
-              <span class="timeline-item-period timeline-item-period--education">{education.period}</span>
+              <span class="timeline-item-period timeline-item-period--education">
+                {education.period}
+              </span>
               <h3 class="timeline-item-role mt-1">{education.degree}</h3>
               <p class="timeline-item-company">{education.institution}</p>
               {(education.result || education.status) && (
@@ -164,13 +194,17 @@ import {
               <div class="space-y-2">
                 <h4 class="font-semibold text-white">Contenidos y módulos</h4>
                 <ul class="timeline-item-list">
-                  {education.subjects.map((subject) => <li>{subject}</li>)}
+                  {education.subjects.map((subject) => (
+                    <li>{subject}</li>
+                  ))}
                 </ul>
               </div>
             )}
             {education.finalProject && (
               <div class="rounded-lg border border-slate-700/70 bg-slate-900/50 p-4">
-                <h4 class="font-semibold text-brand-neon">Proyecto académico</h4>
+                <h4 class="font-semibold text-brand-neon">
+                  Proyecto académico
+                </h4>
                 <p class="mt-1 text-slate-300">{education.finalProject}</p>
               </div>
             )}
@@ -182,14 +216,28 @@ import {
     <section class="reveal space-y-6" id="habilidades">
       <h2 class="section-title">Conocimientos y tecnologías</h2>
       <p class="text-slate-400">
-        Las descripciones indican el contexto en el que he utilizado o estudiado cada tecnología.
-        No representan una escala homogénea de dominio.
+        Las descripciones indican el contexto en el que he utilizado o estudiado
+        cada tecnología. No representan una escala homogénea de dominio.
       </p>
-      <div class="flex flex-wrap gap-2" role="group" aria-label="Filtrar habilidades">
-        <button class="skill-filter" type="button" data-filter="all" aria-pressed="true">Todas</button>
+      <div
+        class="flex flex-wrap gap-2"
+        role="group"
+        aria-label="Filtrar habilidades"
+      >
+        <button
+          class="skill-filter"
+          type="button"
+          data-filter="all"
+          aria-pressed="true">Todas</button
+        >
         {
           SKILL_CATEGORIES.map((category) => (
-            <button class="skill-filter" type="button" data-filter={category.name} aria-pressed="false">
+            <button
+              class="skill-filter"
+              type="button"
+              data-filter={category.name}
+              aria-pressed="false"
+            >
               {category.name}
             </button>
           ))
@@ -221,9 +269,17 @@ import {
           LANGUAGES.map((language) => (
             <article class="skill-category">
               <h3 class="skill-category-title">{language.name}</h3>
-              <p class="text-lg font-semibold text-brand-neon">{language.level}</p>
-              {language.certification && <p class="mt-2 text-sm text-slate-300">{language.certification}</p>}
-              {language.notes && <p class="mt-2 text-sm text-slate-400">{language.notes}</p>}
+              <p class="text-lg font-semibold text-brand-neon">
+                {language.level}
+              </p>
+              {language.certification && (
+                <p class="mt-2 text-sm text-slate-300">
+                  {language.certification}
+                </p>
+              )}
+              {language.notes && (
+                <p class="mt-2 text-sm text-slate-400">{language.notes}</p>
+              )}
             </article>
           ))
         }
@@ -233,14 +289,22 @@ import {
     <section class="contact-section reveal space-y-6" id="contacto">
       <h2 class="section-title">Contacto</h2>
       <p>
-        Si quieres contactar conmigo para hablar sobre desarrollo de software, integración de sistemas
-        o proyectos tecnológicos, puedes escribirme directamente o encontrarme en mis perfiles profesionales.
+        Si quieres contactar conmigo para hablar sobre desarrollo de software,
+        integración de sistemas o proyectos tecnológicos, puedes escribirme
+        directamente o encontrarme en mis perfiles profesionales.
       </p>
       <div class="contact-links">
-        <a href={`mailto:${PROFILE.email}`} class="contact-button">Escribirme por email</a>
+        <a href={`mailto:${PROFILE.email}`} class="contact-button"
+          >Escribirme por email</a
+        >
         {
           SOCIAL_LINKS.map((link) => (
-            <a href={link.url} target="_blank" rel="noopener noreferrer" class="social-link">
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+            >
               {link.platform}
             </a>
           ))
